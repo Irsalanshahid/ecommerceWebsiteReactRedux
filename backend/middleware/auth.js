@@ -14,4 +14,15 @@ exports.isAuthenticated = catchAsyncErrors(async (req,res,next)=>{
     req.user = await User.findById(decodedData.id);
     
     next();
-})
+});
+exports.authorizeRoles = (...Roles) =>{
+    console.log(Roles)
+    return (req,res,next)=>{
+        console.log(!Roles.includes(req.user.role))
+        if(!Roles.includes(req.user.role)){
+            return next(new ErrorHandler(`Role:"${req.user.role}"is not authenticated for this process`,403))
+        }
+        next();
+    }
+
+}

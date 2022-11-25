@@ -54,6 +54,11 @@ reviews:[{
         type:String,
     }
 }],
+user:{
+    type:mongoose.Schema.ObjectId,
+    ref: "users",
+    required: true
+},
 createdAt:{
     type:Date,
     default : Date.now

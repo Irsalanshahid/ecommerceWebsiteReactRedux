@@ -16,9 +16,9 @@ exports.isAuthenticated = catchAsyncErrors(async (req,res,next)=>{
     next();
 });
 exports.authorizeRoles = (...Roles) =>{
-    console.log(Roles)
+    //console.log(Roles)
     return (req,res,next)=>{
-        console.log(!Roles.includes(req.user.role))
+        //console.log(!Roles.includes(req.user.role))
         if(!Roles.includes(req.user.role)){
             return next(new ErrorHandler(`Role:"${req.user.role}"is not authenticated for this process`,403))
         }

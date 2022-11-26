@@ -154,4 +154,28 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
     
     sendToken(user,200,res)
   });
+
+  exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.find();
+    const totalUsers = await User.countDocuments();
+    res.status(200).json({
+        success: true,
+        totalUsers:totalUsers,
+        user
+    })
+  });
+
+  exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if(!user){
+        return next(new ErrorHandler("User not found!!",400))
+    }
+    
+    res.status(200).json({
+        success: true,
+        
+        user
+    })
+  });
   

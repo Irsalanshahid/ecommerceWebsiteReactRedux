@@ -122,4 +122,36 @@ exports.getUserDetails = catchAsyncErrors( async(req,res,next)=>{
 
 })
 
-exports.updateUserPassword = catchAsyncErrors( async(req,res,next)=>{});
+exports.updateUserPassword = catchAsyncErrors( async(req,res,next)=>{
+    const user = await User.findById(req.user._id).select("+password");
+
+    const isPasswordMatch = user.comparePassword(req.body.oldPassword);
+    if(!isPasswordMatch){
+        return next( new ErrorHandler("Please Enter Valid Old Password",400));
+    }
+
+    if(req.body.newPassword !== req.body.confirmPassword){
+        return next(new ErrorHandler("Password and Confirm Password does not match",400))
+    }
+
+    user.password = req.body.newPassword
+
+    await user.save();
+
+    sendToken(user,200,res)
+});
+
+exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
+    const updatedInfo = {
+        email: req.body.email,
+        name:req.body.name
+    }
+  
+    const user = await User.findByIdAndUpdate(req.user.id, updatedInfo, {
+      new: true,
+      runValidators: true,
+    });
+    
+    sendToken(user,200,res)
+  });
+  

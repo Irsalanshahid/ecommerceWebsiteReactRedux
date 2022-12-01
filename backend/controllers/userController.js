@@ -19,7 +19,7 @@ exports.createUser = catchAsyncErrors( async(req,res,next)=>{
     sendToken(user,200,res);
 })
 
-exports.loginUser = catchAsyncErrors( async(req,res)=>{
+exports.loginUser = catchAsyncErrors( async(req,res,next)=>{
     const {email,password} = req.body;
 
     if(!email || !password){

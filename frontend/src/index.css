@@ -1,3 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900%7CPoppins:100,200,300,400,500,600,700,800,900');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-links {
+  @apply px-2 hover:underline hover:text-black transition duration-1000 ease-in-out text-[#3a575d]  font-['Poppins'] font-bold uppercase text-[13px] leading-[1.65em] tracking-[0.05em];
+}
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+body {
+  margin: 0;
+  overflow-y: scroll;
+}
+
+.sidebar {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.is-sticky {
+  position: fixed;
+  border: 5px solid green;
+  top: 0px;
+  z-index: 999;
+  animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+}
+.isSticky {
+  position: sticky;
+  top: -1px;
+  z-index: 999;
+  transition: 0.2s ease-out;
+}

@@ -91,7 +91,7 @@ function Header({ children, sticky = false, className, ...rest }) {
     <header
       ref={ref}
       className={
-        'bg-white font-bold text-3a575d font-bold text-xl px-[1.5%] pb-1 pt-1 w-full' +
+        'bg-white font-bold text-3a575d  text-xl px-[1.5%] pb-1 pt-1 w-full overflow-hidden' +
         (isSticky ? ' isSticky' : '')
       }
     >

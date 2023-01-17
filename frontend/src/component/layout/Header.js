@@ -91,20 +91,20 @@ function Header({ children, sticky = false, className, ...rest }) {
     <header
       ref={ref}
       className={
-        'bg-white font-bold text-3a575d  text-xl px-[1.5%] pb-1 pt-1 w-full overflow-hidden' +
+        'bg-white font-bold text-3a575d  text-xl px-[1.5%] pb-1 pt-1 w-full ' +
         (isSticky ? ' isSticky' : '')
       }
     >
-      <div className=" mx-auto flex items-center justify-between px-4 h-12 ">
+      <div className=" mx-auto flex items-start justify-between px-4 h-12 ">
         <Link to="/">
           {/* Add your company logo here */}
           <img
             src="https://cdn.shopify.com/s/files/1/2219/4051/files/web-logo_1_340ee096-60ef-4574-a134-200819e3977d.png?v=1671171265"
             alt="Company Logo"
-            className="w-[125px] h-auto"
+            className="w-[125px] h-auto min-w-[125px] "
           />
         </Link>
-        <nav className="flex items-center gap-12">
+        <nav className="hidden xl:flex items-center justify-around mx-1" style={{flexGrow:1}}>
           <Link to="/link1" className="nav-links">
             New Arrivals
           </Link>
@@ -130,7 +130,7 @@ function Header({ children, sticky = false, className, ...rest }) {
             Look Book
           </Link>
         </nav>
-        <div className="flex items-center gap-4">
+        <div className="hidden xl:flex items-center gap-4">
           <Link to="/search" className="nav-links">
             <FaSearch size={20} />
           </Link>

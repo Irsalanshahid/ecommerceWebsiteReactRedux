@@ -3,8 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 .nav-links {
   @apply px-2 hover:underline hover:text-black transition duration-1000 ease-in-out text-[#3a575d]  font-['Poppins'] font-bold uppercase text-[13px] leading-[1.65em] tracking-[0.05em];
+}
+
+.mb-nav-links {
+  @apply pt-[13px] px-4 pb-[11px] flex h-12 items-center border-[#ebebeb] border-b hover:underline hover:text-black transition duration-1000 ease-in-out text-[#3a575d]  font-['Poppins'] font-bold uppercase text-[13px] leading-[1.65em] tracking-[0.05em];
 }
 .sticky {
   position: -webkit-sticky;

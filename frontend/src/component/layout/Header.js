@@ -1,67 +1,14 @@
 // import {useRef, useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
-import { FaSearch, FaUser, FaHeart, FaShoppingCart } from 'react-icons/fa';
-
-// const Header = () => {
-//   const [isSticky, setIsSticky] = useState("false")
-//   const ref = useRef();
-//   useEffect(()=>{
-//     const cachedRef = ref.current,
-//           observer = new IntersectionObserver(
-//             ([e]) => setIsSticky(e.intersectionRatio < 1),
-//             {
-//               threshold: [1],
-//               // rootMargin: '-1px 0px 0px 0px',  // alternativly, use this and set `top:0` in the CSS
-//             }
-//           )
-
-//     observer.observe(cachedRef)
-
-//     // unmount
-//     return function(){
-//       observer.unobserve(cachedRef)
-//     }
-//   }, [])
-
-//   return (
-
-//       <header ref={ref} className={(isSticky ? " isSticky bg-red-500 font-bold text-3a575d font-bold text-xl px-1 w-full h-12" : "bg-red-500 font-bold text-3a575d font-bold text-xl px-1 w-full h-12")}>
-//       <div className=" mx-auto flex items-center justify-between px-4 bg-red-500">
-//         <Link to="/">
-//           {/* Add your company logo here */}
-//           <img src="/logo.png" alt="Company Logo" className="h-8" />
-//         </Link>
-// <nav className="flex items-center gap-3">
-//   <Link to="/link1" className="nav-links">New Arrivals</Link>
-//   <Link to="/link2" className="nav-links">Home</Link>
-//   <Link to="/link3" className="nav-links">Men</Link>
-//   <Link to="/link4" className="nav-links">Women</Link>
-//   <Link to="/link5" className="nav-links">Kids</Link>
-//   <Link to="/link6" className="nav-links">Footwear</Link>
-//   <Link to="/link1" className="nav-links">Sale</Link>
-//   <Link to="/link2" className="nav-links">Look Book</Link>
-// </nav>
-//         <div className="flex items-center">
-//           <Link to="/search" className="nav-links">
-//             <FaSearch size={18} />
-//           </Link>
-//           <Link to="/user" className="nav-links">
-//             <FaUser size={18} />
-//           </Link>
-//           <Link to="/wishlist" className="nav-links">
-//             <FaHeart size={18} />
-//           </Link>
-//           <Link to="/checkout" className="nav-links">
-//             <FaShoppingCart size={18} />
-//           </Link>
-//         </div>
-//       </div>
-//     </header>
-
-//   );
-// };
-
+import {
+  FaSearch,
+  FaRegUser,
+  FaRegHeart,
+  FaBars,
+  FaTimes,
+} from 'react-icons/fa';
+import { FiShoppingCart } from 'react-icons/fi';
 import { useRef, useState, useEffect } from 'react';
 
 function Header({ children, sticky = false, className, ...rest }) {
@@ -96,6 +43,40 @@ function Header({ children, sticky = false, className, ...rest }) {
       }
     >
       <div className=" mx-auto flex items-start justify-between px-4 h-12 ">
+        <div className="flex xl:hidden items-center gap-4">
+          <div className="fixed h-full w-[337px] left-0 top-0 bg-white z-50 overflow-scroll">
+            <Link to="/link2" className="mb-nav-links">
+              Home
+            </Link>
+            <Link to="/link3" className="mb-nav-links">
+              Men
+            </Link>
+            <Link to="/link4" className="mb-nav-links">
+              Women
+            </Link>
+            <Link to="/link5" className="mb-nav-links">
+              Kids
+            </Link>
+            <Link to="/link6" className="mb-nav-links">
+              Footwear
+            </Link>
+            <Link to="/link7" className="mb-nav-links">
+              Fragrances
+            </Link>
+            <Link to="/link8" className="mb-nav-links">
+              Sale
+            </Link>
+            <Link to="/link9" className="mb-nav-links">
+              Lookbook
+            </Link>
+          </div>
+          <Link to="/user" className="mb-nav-links">
+            <FaBars size={20} />
+          </Link>
+          <Link to="/search" className="mb-nav-links">
+            <FaSearch size={20} />
+          </Link>
+        </div>
         <Link to="/">
           {/* Add your company logo here */}
           <img
@@ -104,7 +85,24 @@ function Header({ children, sticky = false, className, ...rest }) {
             className="w-[125px] h-auto min-w-[125px] "
           />
         </Link>
-        <nav className="hidden xl:flex items-center justify-around mx-1" style={{flexGrow:1}}>
+        <div className="flex xl:hidden items-center gap-4">
+          <Link to="/search" className="nav-links">
+            <FaSearch size={20} />
+          </Link>
+          <Link to="/user" className="nav-links">
+            <FaRegUser size={20} />
+          </Link>
+          <Link to="/wishlist" className="nav-links">
+            <FaRegHeart size={20} />
+          </Link>
+          <Link to="/checkout" className="nav-links">
+            <FiShoppingCart size={20} />
+          </Link>
+        </div>
+        <nav
+          className="hidden xl:flex items-center justify-around mx-1"
+          style={{ flexGrow: 1 }}
+        >
           <Link to="/link1" className="nav-links">
             New Arrivals
           </Link>
@@ -135,13 +133,13 @@ function Header({ children, sticky = false, className, ...rest }) {
             <FaSearch size={20} />
           </Link>
           <Link to="/user" className="nav-links">
-            <FaUser size={20} />
+            <FaRegUser size={20} />
           </Link>
           <Link to="/wishlist" className="nav-links">
-            <FaHeart size={20} />
+            <FaRegHeart size={20} />
           </Link>
           <Link to="/checkout" className="nav-links">
-            <FaShoppingCart size={20} />
+            <FiShoppingCart size={20} />
           </Link>
         </div>
       </div>

@@ -28,7 +28,28 @@ function Header({ children, sticky = false, className, ...rest }) {
 
     observer.observe(cachedRef);
 
-    // unmount
+    const hamburgerButton = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const overlayBlack = document.querySelector('.overlay-black');
+
+    hamburgerButton.addEventListener('click', function () {
+      mobileMenu.style.display = 'block';
+      overlayBlack.style.display = 'block';
+
+      (function () {
+        document.addEventListener('click', function closeMobileMenu(event) {
+          if (
+            !mobileMenu.contains(event.target) &&
+            !hamburgerButton.contains(event.target)
+          ) {
+            mobileMenu.style.display = 'none';
+            overlayBlack.style.display = 'none';
+            document.removeEventListener('click', closeMobileMenu);
+          }
+        });
+      })();
+    });
+
     return function () {
       observer.unobserve(cachedRef);
     };
@@ -42,9 +63,10 @@ function Header({ children, sticky = false, className, ...rest }) {
         (isSticky ? ' isSticky' : '')
       }
     >
+      <div className="hidden fixed h-full w-full left-0 top-0 bg-[#232323cc] z-[49] overflow-scroll overlay-black"></div>
       <div className=" mx-auto flex items-start justify-between px-4 h-12 ">
         <div className="flex xl:hidden items-center gap-4">
-          <div className="fixed h-full w-[337px] left-0 top-0 bg-white z-50 overflow-scroll">
+          <div className="hidden fixed h-full w-[337px] left-0 top-0 bg-white z-50 overflow-scroll mobile-menu">
             <Link to="/link2" className="mb-nav-links">
               Home
             </Link>
@@ -70,10 +92,10 @@ function Header({ children, sticky = false, className, ...rest }) {
               Lookbook
             </Link>
           </div>
-          <Link to="/user" className="mb-nav-links">
+          <button className="nav-links hamburger">
             <FaBars size={20} />
-          </Link>
-          <Link to="/search" className="mb-nav-links">
+          </button>
+          <Link to="/search" className="nav-links">
             <FaSearch size={20} />
           </Link>
         </div>
@@ -86,19 +108,15 @@ function Header({ children, sticky = false, className, ...rest }) {
           />
         </Link>
         <div className="flex xl:hidden items-center gap-4">
-          <Link to="/search" className="nav-links">
-            <FaSearch size={20} />
-          </Link>
           <Link to="/user" className="nav-links">
             <FaRegUser size={20} />
           </Link>
-          <Link to="/wishlist" className="nav-links">
-            <FaRegHeart size={20} />
-          </Link>
+
           <Link to="/checkout" className="nav-links">
             <FiShoppingCart size={20} />
           </Link>
         </div>
+
         <nav
           className="hidden xl:flex items-center justify-around mx-1"
           style={{ flexGrow: 1 }}
